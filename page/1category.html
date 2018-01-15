@@ -21,7 +21,7 @@ type: page
                             <time>
                             {{ post.date | date:"%F" }} {{ post.date | date: "%a" }}.
                             </time>
-                            <a class="title" href="{{ post.url }}">{{ post.title }}</a>
+                            <a class="title" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
 
                             {% include category.html %}
                             {% include tag.html %}
@@ -44,7 +44,7 @@ type: page
                 <ul id="content-side" class="content-ul">
                     {% for category in site.categories%}
                         <li>
-                            <a class="scroll" href="#{{ category | first }}">
+                            <a data-scroll href="#{{ category | first }}">
                                 {{ category | first }} ({{ category | last | size }})
                             </a>
                         </li>

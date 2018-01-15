@@ -236,7 +236,7 @@ google_analytics_id: UA-72449510-4 # google 分析追踪id
 
 ### 4. 写文章
 
-`_posts`目录下存放文章信息，文章头部注明 layout(布局)、title、date、categories、tags、author(可选)，如下：
+`_posts`目录下存放文章信息，文章头部注明 layout(布局)、title、date、categories、tags、author(可选)、mathjax(可选，点击[这里](https://www.mathjax.org/)查看更多关于`Mathjax`)，如下：
 
 ```
 ---
@@ -246,6 +246,7 @@ date:   2016-03-12 11:40:18 +0800
 categories: jekyll
 tags: jekyll 端口 markdown Foxit RubyGems HTML CSS
 author: Haoyang Gao
+mathjax: true
 ---
 ```
 
@@ -322,6 +323,23 @@ Configuration file: E:/GitWorkSpace/blog/_config.yml
 
 感谢捐赠的小伙伴！！！
 
+* 2017.05.25 收到 微信用户 ¥1.00
+* 2017.05.19 收到 风之筝 ¥6.66
+* 2017.05.16 收到 张驰 ¥6.00
+* 2017.05.03 收到 希成 ¥6.66
+* 2017.04.24 收到 deezer ¥10.00
+* 2017.04.13 收到 Abraham Xiao ¥30.00
+* 2017.04.11 收到 微信用户 ¥4.00
+* 2017.04.01 收到 Elvin Zeng ¥6.66
+* 2017.03.13 收到 微信用户 ¥6.66
+* 2017.03.04 收到 史莱姆 ¥9.90
+* 2017.03.02 收到 梦想小熊 ¥6.66
+* 2017.02.27 收到 夏友杰 ¥6.66
+* 2017.02.26 收到 兰缘小妖 ¥10.00
+* 2017.02.25 收到 微信用户 ¥6.66
+* 2017.02.22 收到 微信用户 ¥6.66
+* 2017.02.15 收到 微信用户 ¥10.00
+* 2017.02.06 收到 Light ¥10.24
 * 2017.01.15 收到 微信用户 ¥6.66
 * 2016.12.17 收到 HitNoah ¥12.00
 * 2016.12.09 收到 情融 ¥6.60
@@ -342,6 +360,10 @@ Configuration file: E:/GitWorkSpace/blog/_config.yml
 * 2016.04.28 收到 薛彬 ¥8.8
 
 ## Update Log
+
+### 2017.2.28
+
+- `[^]` 修复目录滚动 bug [#22](https://github.com/Gaohaoyang/gaohaoyang.github.io/issues/22), [#48](https://github.com/Gaohaoyang/gaohaoyang.github.io/issues/48)
 
 ### 2016.6.20
 

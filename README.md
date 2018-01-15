@@ -104,7 +104,7 @@ The post contents is fixed at the right side while page is scrolling. There will
 
 ### Code Highlight
 
-While the jekyll is update to 3.x.x, you can use github flavored markdown to write code.  
+While the jekyll is update to 3.x.x, you can use github flavored markdown to write code.
 
 More info to see [syntax-highlighter-changed](https://jekyllrb.com/docs/upgrading/2-to-3/#syntax-highlighter-changed).
 
@@ -237,7 +237,7 @@ When you done, you can see UV, PV, location etc. info at your own Google Analyti
 
 ### 4. Write post
 
-You can write posts at folder `_posts`. At the beginning of the post, you should declare layout、title、date、categories、tags、author(optional) info.
+You can write posts at folder `_posts`. At the beginning of the post, you should declare layout、title、date、categories、tags、author(optional) info、mathjax(optional，click [here](https://www.mathjax.org/) for more detail about `Mathjax`).
 
 ```
 ---
@@ -247,6 +247,7 @@ date:   2016-03-12 11:40:18 +0800
 categories: jekyll
 tags: jekyll 端口 markdown Foxit RubyGems HTML CSS
 author: Haoyang Gao
+mathjax: true
 ---
 ```
 
@@ -311,6 +312,23 @@ You can also donate me for a coffee, and I'll do better. Thanks.
 
 Thanks these friends!!!
 
+* 2017.05.25 received Wechat user ¥1.00
+* 2017.05.19 received 风之筝 ¥6.66
+* 2017.05.16 received 张驰 ¥6.00
+* 2017.05.03 received 希成 ¥6.66
+* 2017.04.24 received deezer ¥10.00
+* 2017.04.13 received Abraham Xiao ¥30.00
+* 2017.04.11 received Wechat user ¥4.00
+* 2017.04.01 received Elvin Zeng ¥6.66
+* 2017.03.13 received Wechat user ¥6.66
+* 2017.03.04 received 史莱姆 ¥9.90
+* 2017.03.02 received 梦想小熊 ¥6.66
+* 2017.02.27 received 夏友杰 ¥6.66
+* 2017.02.26 received 兰缘小妖 ¥10.00
+* 2017.02.25 received Wechat user ¥6.66
+* 2017.02.22 received Wechat user ¥6.66
+* 2017.02.15 received Wechat user ¥10.00
+* 2017.02.06 received Light ¥10.24
 * 2017.01.15 received Wechat user ¥6.66
 * 2016.12.17 received HitNoah ¥12.00
 * 2016.12.09 received 情融 ¥6.60
@@ -332,6 +350,10 @@ Thanks these friends!!!
 
 
 ## Update Log
+
+### 2017.2.28
+
+- `[^]` fix smoothScroll bug in Tencent webview like wechat and qq.  [#22](https://github.com/Gaohaoyang/gaohaoyang.github.io/issues/22), [#48](https://github.com/Gaohaoyang/gaohaoyang.github.io/issues/48)
 
 ### 2016.6.20
 

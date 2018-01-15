@@ -39,6 +39,12 @@ type: page
 
 * [Unix 时间戳 Unix timestamp](http://tool.chinaz.com/Tools/unixtime.aspx)
 
+- [在线正则表达式匹配](https://regex101.com/)
+    - 这个功能更强大一点，能清楚的区分出贪婪和懒惰正则。
+- [http://regexr.com/](http://regexr.com/)
+- [google fonts](https://fonts.google.com/)
+  - [Google Fonts 加速代理](https://fengmk2.com/blog/2016/google-fonts-mirror)
+
 ## 编程语言
 
 ### JavaScript
@@ -150,6 +156,14 @@ type: page
 
     纯 CSS 的图片轮播图。
 
+- [gumshoe](https://github.com/cferdinandi/gumshoe)
+
+    A simple, framework-agnostic scrollspy script.
+
+- [smooth-scroll](https://github.com/cferdinandi/smooth-scroll)
+
+  A simple vanilla JS script to animate scrolling to anchor links.
+
 ## 模块化
 
 * [后端程序员的 JavaScript 之旅 - 模块化（一）](http://lishaopeng.com/2016/02/05/js-module/)
@@ -158,11 +172,11 @@ type: page
 
 * [CommonJS 规范 -来自 阮一峰 JavaScript 标准参考教程(alpha)](http://javascript.ruanyifeng.com/nodejs/module.html)
 
-## 技巧
+## other articles
 
 - [<head> Cheat Sheet](http://gethead.info/)
 * [将footer固定在页面底部的实现方法](https://segmentfault.com/a/1190000004453249)
-
+- [HTML5 视频 By Pete LePage](https://www.html5rocks.com/zh/tutorials/video/basics/)
 
 ## 编辑器
 
