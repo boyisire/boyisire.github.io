@@ -7,7 +7,7 @@
 
 # Site settings
 title: 大业的大业
-brief-intro: Front-end Dev Engineer
+brief-intro: #Front-end Dev Engineer
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://boyisire.github.io" # the base hostname & protocol for your site
 
