@@ -77,10 +77,10 @@ mysql> flush privileges;
 `alter table test rename test1; `
 
 #### 2. 给表名增加注释
-alter table td_user_refund_type comment='退款原因类型表';
+`alter table td_user_refund_type comment='退款原因类型表';`
 
 #### 3. 添加表列
-alter table test add  column name varchar(10);
+`alter table test add  column name varchar(10);`
  
 #### 4. 修改表列名
 `alter table td_user_refund_type change  column titile title varchar(30);`
