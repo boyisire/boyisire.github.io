@@ -46,7 +46,7 @@ header('HTTP/1.1 200 OK');
 3. 访问受限
 ```php
 header('HTTP/1.1 403 Forbidden');
-```　　
+```
 　　
 4. 页面被永久删除，可以告诉搜索引擎更新它们的urls
 ```php
@@ -61,12 +61,12 @@ header('HTTP/1.1 500 Internal Server Error');
 6. 重定向到一个新的位置
 ```php
 header('Location: .example.org/');
-```　　
+```
 　　
 7. 延迟一段时间后重定向
 ```php
 header('Refresh: 10; url=.example.org/');
-```　
+```
 
 8. 提示用户保存一个生成的 PDF 文件
 ```php
@@ -74,12 +74,12 @@ header("Content-type:application/pdf");
 // 文件将被称为 downloaded.pdfheader("Content-Disposition:attachment;filename='downloaded.pdf'");
 readfile("original.pdf");
 // PDF 源在 original.pdf 中
-```　
+```
 　
 9. 可以使用HTML语法来实现延迟
 ```php
 header('Content-Transfer-Encoding: binary');
-```　
+```
 
 10. 禁止缓存当前文档
 ```php
