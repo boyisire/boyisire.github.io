@@ -32,6 +32,52 @@ header(string,replace,http_response_code)
 |replace|可选,指示该报头是否替换之前的报头,或添加第二个报头.默认是 true（替换）;false（允许相同类型的多个报头）|
 |http_response_code|可选,把 HTTP 响应代码强制为指定的值|
 
+## HTTP Request的Header信息
+### 1. HTTP请求方式
+
+|方 法|描 述|
+|---|---|
+|GET|向Web服务器请求一个文件|
+|POST|向Web服务器发送数据让Web服务器进行处理|
+|PUT|向Web服务器发送数据并存储在Web服务器内部|
+|HEAD|检查一个对象是否存在|
+|DELETE|从Web服务器上删除一个文件|
+|CONNECT|对通道提供支持|
+|TRACE|跟踪到服务器的路径|
+|OPTIONS|查询Web服务器的性能|
+
+**说明：**
+
+主要使用到"GET"和"POST".
+
+**实例：**
+
+POST /test/tupian/cm HTTP/1.1
+分成三部分：
+1. POST：HTTP请求方式
+2. /test/tupian/cm：请求Web服务器的目录地址（或者指令）
+3. HTTP/1.1: URI（Uniform Resource Identifier，统一资源标识符）及其版本
+
+*备注：*
+
+    在Ajax中，对应method属性设置。
+
+
+### 2. Host
+
+**说明：**
+
+请求的web服务器域名地址
+
+**实例：**
+
+例如:
+```
+web请求URL：http://www.baidu.com:8888/test/1
+
+Host就为www.baidu.com:8888
+```
+
 ## 常用设置
 1. 页面没找到 Not Found
 ```php
