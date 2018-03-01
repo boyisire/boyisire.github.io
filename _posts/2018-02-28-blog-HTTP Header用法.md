@@ -1,36 +1,24 @@
 ---
 layout:     post
-title:      "PHP header函数用法"
-subtitle:   "hearder 详解"
+title:      "HTTP Header用法"
+subtitle:   "PHP header函数用法"
 date:       2018-02-28 21:35:00
 author:     "大业"
 header-img: ""
 catalog: true
 tags:
     - PHP
+    - HTTP
     - 函数
 ---
 
 * content
 {:toc}
 
-header() 函数相关用法说明
+关于Ｗeb 交互中，Header　的相关信息.
 
 
 
-
-
-## 定义
-header() 函数向客户端发送原始的 HTTP 报头
-
-## 语法
-header(string,replace,http_response_code)
-
-|参数|描述|
-|---|---|
-|string|必选,规定要发送的报头字符串|
-|replace|可选,指示该报头是否替换之前的报头,或添加第二个报头.默认是 true（替换）;false（允许相同类型的多个报头）|
-|http_response_code|可选,把 HTTP 响应代码强制为指定的值|
 
 
 
@@ -214,7 +202,20 @@ Content-Type: text/html;charset=utf-8
 
 
 
-## 常用设置
+## 服务器常用Header设置
+### header()定义
+header() 函数向客户端发送原始的 HTTP 报头
+
+### 语法
+header(string,replace,http_response_code)
+
+|参数|描述|
+|---|---|
+|string|必选,规定要发送的报头字符串|
+|replace|可选,指示该报头是否替换之前的报头,或添加第二个报头.默认是 true（替换）;false（允许相同类型的多个报头）|
+|http_response_code|可选,把 HTTP 响应代码强制为指定的值|
+
+
 1. 页面没找到 Not Found
 ```php
 header('HTTP/1.1 404 Not Found');
