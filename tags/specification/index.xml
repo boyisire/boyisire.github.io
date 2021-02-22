@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on 大业的大业</title>
-    <link>https://boyisire.github.io/posts/</link>
-    <description>Recent content in Posts on 大业的大业</description>
+    <title>specification on 大业的大业</title>
+    <link>https://boyisire.github.io/tags/specification/</link>
+    <description>Recent content in specification on 大业的大业</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© Copyright notice</copyright>
-    <lastBuildDate>Sun, 01 Sep 2019 11:12:43 +0800</lastBuildDate><atom:link href="https://boyisire.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 01 Sep 2019 11:12:43 +0800</lastBuildDate><atom:link href="https://boyisire.github.io/tags/specification/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>golang使用</title>
       <link>https://boyisire.github.io/posts/development-golang/</link>
@@ -52,15 +52,6 @@
 master 主分支，随时可以发布到 prod 环境的代码，master 是受保护的分支，不允许直接修改，只允许从其他分支 merge。
 develop 开发分支，随时可以部署到开发环境的代码分支，受保护的分支，不允许直接 Push，只允许进行 merge。
 分支命名规范 分支命名要求以如下字符串开头：</description>
-    </item>
-    
-    <item>
-      <title>常用的英文日期缩写</title>
-      <link>https://boyisire.github.io/posts/english-date/</link>
-      <pubDate>Tue, 16 Jan 2018 17:00:00 +0000</pubDate>
-      
-      <guid>https://boyisire.github.io/posts/english-date/</guid>
-      <description>常用日期格式  英式日期格式：8th March,2008 或8 March,2008 格式为：日 月,年 美式日期格式：March 8th,2008 或March 8,2008 格式为：月 日,年 中文日期格式：2008年3月8日  月份缩写    英文 中文 缩写     January 一月 Jan.</description>
     </item>
     
   </channel>
