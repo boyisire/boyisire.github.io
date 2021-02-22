@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>基于 Git 的代码分支管理和要求 - 大业的大业</title><link rel="icon" type="image/png" href=icons/myicon.png /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="基于 Git 的代码分支管理和要求" />
+<meta property="og:description" content="git使用规范" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://boyisire.github.io/posts/git-gitlab-branch/" />
+<meta property="article:published_time" content="2019-08-07T20:18:57+08:00" />
+<meta property="article:modified_time" content="2019-08-07T20:18:57+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="基于 Git 的代码分支管理和要求"/>
+<meta name="twitter:description" content="git使用规范"/>
+<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,300italic,400italic|Raleway:200,300" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boyisire.github.iocss/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boyisire.github.iocss/main.css" />
+	<link rel="stylesheet" type="text/css" href="https://boyisire.github.iocss/custom.css" />
+	<link rel="stylesheet" type="text/css" href="https://boyisire.github.iocss/dark.css" media="(prefers-color-scheme: dark)" />
+	<link rel="stylesheet" type="text/css" href="https://boyisire.github.iocss/custom-dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+	<script src="https://boyisire.github.iojs/main.js"></script>
+	<script src="https://boyisire.github.iojs/abc.js"></script>
+	<script src="https://boyisire.github.iojs/xyz.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper post">
+		<div class="header">
+	<base href="https://boyisire.github.io">
+	<h1 class="site-title"><a href="https://boyisire.github.io">大业的大业</a></h1>
+	<div class="site-description"><h2>记录精彩瞬间</h2><nav class="nav social">
+			<ul class="flat"><a href="https://github.com/vividvilla/ezhil" title="Github"><i data-feather="github"></i></a></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/about">About</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post-header">
+			<h1 class="title">基于 Git 的代码分支管理和要求</h1>
+			<div class="meta">Posted at &mdash; Aug 7, 2019</div>
+		</div>
+
+		<div class="markdown">
+			<p>NX Dev team 使用 git 和 Gitlab 来进行代码管理和研发流程管理，下面是主要分支和研发的细节要求。</p>
+<h2 id="master">master</h2>
+<p>主分支，随时可以发布到 prod 环境的代码，master 是受保护的分支，不允许直接修改，只允许从其他分支 merge。</p>
+<h2 id="develop">develop</h2>
+<p>开发分支，随时可以部署到开发环境的代码分支，受保护的分支，不允许直接 Push，只允许进行 merge。</p>
+<h2 id="分支命名规范">分支命名规范</h2>
+<p>分支命名要求以如下字符串开头：</p>
+<ul>
+<li>issue</li>
+<li>feat</li>
+<li>fix</li>
+<li>test</li>
+<li>dev</li>
+</ul>
+<p>正确的分支命名示例:</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">issue-3
+feat-something-cool
+test-do-not-merge
+dev-ly
+fix-32
+fix-something
+</code></pre></div><h2 id="其他">其他</h2>
+<p>在进行代码开发之前，请先对 git 进行全局设置，用户名使用姓名拼音，邮箱使用 Gitlab 注册的邮箱(公司邮箱)：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">git config --global --user.name &#34;Liuyang&#34;
+git config --global --user.email &#34;liuyang@3laoshi.com&#34;
+</code></pre></div><p>在 Gitlab 上添加自己的 SSH Key，如果之前没有生成 SSH Key，请自行生成，Mac 或 Linux 参考如下指令：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">ssh-keygen
+</code></pre></div><p>生成 SSH Key 并添加到 Gitlab 后，可以免密访问 Git 仓库中被授权的仓库。</p>
+<p>找到自己需要的代码仓库，拉取项目的 develop 分支的最新代码，如：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">git clone git@git.logstats.net:h5/common.git
+cd common
+git checkout develop
+</code></pre></div><p>日常使用时，请先 Pull 最新的代码，其他同事的 Daily commit 会合并到 develop 分支。</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">git pull origin develop
+</code></pre></div><p>新建自己的开发分支，开发分支请以名称缩写开头，可以包含日期或分支功能描述，建议使用下划线，如：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">git checkout -b ly_20180330
+git checkout -b ly_bugfix
+git checkout -b ly_add_some_function
+git branch
+</code></pre></div><p>确认自己处于自己新建分支下后，开始做代码编写。完成代码编写以后进行 add 和 commit，并将自己的分支提交到Git服务器：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">git push origin ly_20180330
+</code></pre></div><p>将自己的分支提交到服务器以后，登录 Gitlab，进入具体项目，发起 merge request，如遇到冲突，由 merge 发起人负责解决并保证 develop 分支代码处于可部署测试状态。</p>
+<h2 id="关于-commit-message">关于 Commit message</h2>
+<p>部分借鉴 Angula 的 commit message 规范。</p>
+<h4 id="前缀">前缀</h4>
+<ul>
+<li>perf 优化功能</li>
+<li>feat 新功能</li>
+<li>fix 修复</li>
+<li>style 样式,UI</li>
+<li>doc 文档</li>
+<li>refactor 重构</li>
+<li>test 添加测试相关</li>
+<li>chore 构建相关</li>
+<li>debug 临时调试改动</li>
+<li>misc 其他</li>
+</ul>
+<h4 id="要求及示例">要求及示例</h4>
+<p>Commit message 要求使用前缀+说明，如：</p>
+<ul>
+<li>feat: 添加 XXXX 功能</li>
+<li>fix: 修复 XXXX 的 Bug</li>
+<li>style: 修改/调整页面头部布局</li>
+<li>doc: 补全编译说明文档</li>
+<li>chore: 修改编译规则</li>
+<li>debug: 调试 XXXX</li>
+</ul>
+<h4 id="已经-commit-以后如何修改-commit-message">已经 commit 以后,如何修改 commit message</h4>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">git commit --amend
+</code></pre></div><h4 id="补充">补充</h4>
+<p>按照此方式进行 commit message 编写后，grep git log 即可看到不同类别的提交：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">git log | grep feat
+</code></pre></div><h4 id="常用git提交别名">常用git提交别名</h4>
+<p>将下面的信息，直接复制粘贴到家目录中的.bashrc(用zsh的，放入.zshrc)文件中即可</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">#git alias link
+##perf 优化功能
+alias gitperf=&#39;gitfunc() { str=&#34;$1: $2&#34;; git add .; git commit -am &#34;$str&#34;;}; gitfunc &#34;perf&#34;&#39;
+##feat 新功能
+alias gitfeat=&#39;gitfunc() { str=&#34;$1: $2&#34;; git add .; git commit -am &#34;$str&#34;;}; gitfunc &#34;feat&#34;&#39;
+##fix 修复
+alias gitfix=&#39;gitfunc() { str=&#34;$1: $2&#34;; git add .; git commit -am &#34;$str&#34;;}; gitfunc &#34;fix&#34;&#39;
+##style 样式,UI
+alias gitstyle=&#39;gitfunc() { str=&#34;$1: $2&#34;; git add .;git commit -am &#34;$str&#34;;}; gitfunc &#34;style&#34;&#39;
+##doc 文档
+alias gitdoc=&#39;gitfunc() { str=&#34;$1: $2&#34;;git add .; git commit -am &#34;$str&#34;;}; gitfunc &#34;doc&#34;&#39;
+##refactory 重构
+alias gitrefactor=&#39;gitfunc() { str=&#34;$1: $2&#34;;git add .; git commit -am &#34;$str&#34;;}; gitfunc &#34;refactor&#34;&#39;
+##test 添加测试相关
+alias gittest=&#39;gitfunc() { str=&#34;$1: $2&#34;;git add .; git commit -am &#34;$str&#34;;}; gitfunc &#34;test&#34;&#39;
+##chore 构建相关
+alias gitchore=&#39;gitfunc() { str=&#34;$1: $2&#34;;git add .; git commit -am &#34;$str&#34;;}; gitfunc &#34;chore&#34;&#39;
+##debug 临时调试改动
+alias gitdebug=&#39;gitfunc() { str=&#34;$1: $2&#34;;git add .; git commit -am &#34;$str&#34;;}; gitfunc &#34;debug&#34;&#39;
+##misc 其他
+alias gitmisc=&#39;gitfunc() { str=&#34;$1: $2&#34;;git add .; git commit -am &#34;$str&#34;;}; gitfunc &#34;misc&#34;&#39;
+##gitalias 别名信息
+alias gitalias=&#39;echo &#34;gitperf: 优化功能\r&#34;;echo &#34;gitfeat:  新功能\r&#34;;echo &#34;gitfix: 修复\r&#34;;echo &#34;gitstyle: 样式,UI\r&#34;;echo &#34;gitdoc: 文档\r&#34;;echo &#34;gitrefactor: 重构\r&#34;;echo &#34;gittest: 测试相关\r&#34;;echo &#34;gitchore: 构建相关\r&#34;; echo &#34;gitdebug: 临时调试改动\r&#34;; echo &#34;gitmisc: 其它\r&#34;;&#39;
+</code></pre></div>
+		</div>
+
+		<div class="post-tags">
+			
+				
+			
+		</div>
+		</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> © Copyright notice |  <a href="https://github.com/vividvilla/ezhil">Ezhil theme</a> | Built with <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-123-45', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+<script>feather.replace()</script>
+</body>
+</html>

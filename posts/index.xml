@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on 大业的大业</title>
+    <link>https://boyisire.github.io/posts/</link>
+    <description>Recent content in Posts on 大业的大业</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright notice</copyright>
+    <lastBuildDate>Sun, 01 Sep 2019 11:12:43 +0800</lastBuildDate><atom:link href="https://boyisire.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>golang使用</title>
+      <link>https://boyisire.github.io/posts/development-golang/</link>
+      <pubDate>Sun, 01 Sep 2019 11:12:43 +0800</pubDate>
+      
+      <guid>https://boyisire.github.io/posts/development-golang/</guid>
+      <description>项目名称 采用三段式命名 第一段为服务类型 第二段为业务内容 第三段为具体功能 如：
+ api-wechat-callback server-live-pubsub `worker-live-msg  端口规范 接入的微服务端口号都在8000-9000之间 其中：
+ SERVER的端口默认为 8000-8099 API的端口默认为 8800-8889 RPC服务的端口默认为 8900-8999  已使用端口  server-course-pubsub =&amp;gt; 8091 server-live-pubsub =&amp;gt; 8090 server-jzh-rpc =&amp;gt; 8900 api-jzh-api =&amp;gt; 8880 api-order-biz =&amp;gt; 8881 api-wechat-callback =&amp;gt; 8882 api-spm-producer =&amp;gt; 8883  开发规范   import规范</description>
+    </item>
+    
+    <item>
+      <title>PHP开发规范</title>
+      <link>https://boyisire.github.io/posts/development-php-laravel/</link>
+      <pubDate>Thu, 08 Aug 2019 18:18:57 +0800</pubDate>
+      
+      <guid>https://boyisire.github.io/posts/development-php-laravel/</guid>
+      <description>关于规范 说明 这是一套严格的团队开发规范，该规范主要摘自Laravel China社区的《Laravel 项目开发规范》,然后又根据咱们目前团队的使用情况，稍做了部分调整。 注： 该规范目前还不太完善，需后续使用过程中，一点点完善起来.
+优势 规范有以下优点：
+ 高效编码 - 避免了过多的选择造成的『决策时间』浪费； 风格统一 - 最大程度统一了开发团队成员代码书写风格和思路，代码阅读起来如出一辙； 减少错误 - 减小初级工程师的犯错几率。  开发哲学 此规范遵循的『开发哲学』，开发中请把其当做指明灯，来指引你做决策：</description>
+    </item>
+    
+    <item>
+      <title>数据库使用规范</title>
+      <link>https://boyisire.github.io/posts/database-mysql/</link>
+      <pubDate>Thu, 08 Aug 2019 18:18:57 +0800</pubDate>
+      
+      <guid>https://boyisire.github.io/posts/database-mysql/</guid>
+      <description>1. 引言 良好的逻辑设计和物理设计是高性能的基石，应该根据系统将要执行的查询语句来设计schema, 这往往需要权衡各种因素。 制定数据库设计规范规范的直接目的是约束设计行为，最终目的是确保设计的合理统一,保障项目最终的协调稳定性。规范虽然是有丰富项目经验的人制定的，但维护的却不是某个人的意志，而是项目的意志，因为遵守此规范对项目是好的有利的，此规范才有意义。所以规范是为了项目利益最大化而在团队人员中形成的一种约定，所有参与设计的人员都要遵守此约定，所有参与开发的人员都会依此约定解读设计。我们希望团队中所有人看到设计成果，一眼就可以明白这个字段是做什么的、代表的含义是什么，可以但不止于见名知意。
+2. 说明 2.1 编写目的 使用统一的命名和编码规范，使数据库命名及编码风格标准化，以便于阅读、理解和继承。
+2.2 能愿动词 为了避免歧义，文档大量使用了「能愿动词」，对应的解释如下：
+ 必须（Must） - 只能这样子做，请无条件遵循，没有别的选项； 绝不（Must Not）- 严令禁止，在任何情况下都不能这样做； 应该（Should） - 强烈建议这样做，但是不强求； 不应该（Should Not） - 强烈建议不这样做，但是不强求； 可以（May） - 选择性高一点，在这个文档内，此词语使用较少；  2.</description>
+    </item>
+    
+    <item>
+      <title>基于 Git 的代码分支管理和要求</title>
+      <link>https://boyisire.github.io/posts/git-gitlab-branch/</link>
+      <pubDate>Wed, 07 Aug 2019 20:18:57 +0800</pubDate>
+      
+      <guid>https://boyisire.github.io/posts/git-gitlab-branch/</guid>
+      <description>NX Dev team 使用 git 和 Gitlab 来进行代码管理和研发流程管理，下面是主要分支和研发的细节要求。
+master 主分支，随时可以发布到 prod 环境的代码，master 是受保护的分支，不允许直接修改，只允许从其他分支 merge。
+develop 开发分支，随时可以部署到开发环境的代码分支，受保护的分支，不允许直接 Push，只允许进行 merge。
+分支命名规范 分支命名要求以如下字符串开头：</description>
+    </item>
+    
+    <item>
+      <title>常用的英文日期缩写</title>
+      <link>https://boyisire.github.io/posts/english-date/</link>
+      <pubDate>Tue, 16 Jan 2018 17:00:00 +0000</pubDate>
+      
+      <guid>https://boyisire.github.io/posts/english-date/</guid>
+      <description>常用日期格式  英式日期格式：8th March,2008 或8 March,2008 格式为：日 月,年 美式日期格式：March 8th,2008 或March 8,2008 格式为：月 日,年 中文日期格式：2008年3月8日  月份缩写    英文 中文 缩写     January 一月 Jan.</description>
+    </item>
+    
+  </channel>
+</rss>

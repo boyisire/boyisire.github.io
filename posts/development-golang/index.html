@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>golang使用 - 大业的大业</title><link rel="icon" type="image/png" href=icons/myicon.png /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="golang使用" />
+<meta property="og:description" content="应用命名" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://boyisire.github.io/posts/development-golang/" />
+<meta property="article:published_time" content="2019-09-01T11:12:43+08:00" />
+<meta property="article:modified_time" content="2019-09-01T11:12:43+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="golang使用"/>
+<meta name="twitter:description" content="应用命名"/>
+<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,300italic,400italic|Raleway:200,300" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boyisire.github.iocss/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boyisire.github.iocss/main.css" />
+	<link rel="stylesheet" type="text/css" href="https://boyisire.github.iocss/custom.css" />
+	<link rel="stylesheet" type="text/css" href="https://boyisire.github.iocss/dark.css" media="(prefers-color-scheme: dark)" />
+	<link rel="stylesheet" type="text/css" href="https://boyisire.github.iocss/custom-dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+	<script src="https://boyisire.github.iojs/main.js"></script>
+	<script src="https://boyisire.github.iojs/abc.js"></script>
+	<script src="https://boyisire.github.iojs/xyz.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper post">
+		<div class="header">
+	<base href="https://boyisire.github.io">
+	<h1 class="site-title"><a href="https://boyisire.github.io">大业的大业</a></h1>
+	<div class="site-description"><h2>记录精彩瞬间</h2><nav class="nav social">
+			<ul class="flat"><a href="https://github.com/vividvilla/ezhil" title="Github"><i data-feather="github"></i></a></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/about">About</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post-header">
+			<h1 class="title">golang使用</h1>
+			<div class="meta">Posted at &mdash; Sep 1, 2019</div>
+		</div>
+
+		<div class="markdown">
+			<h2 id="项目名称">项目名称</h2>
+<p>采用三段式命名 第一段为服务类型 第二段为业务内容 第三段为具体功能
+如：</p>
+<ul>
+<li><code>api-wechat-callback</code></li>
+<li><code>server-live-pubsub</code></li>
+<li>`worker-live-msg</li>
+</ul>
+<h2 id="端口规范">端口规范</h2>
+<p>接入的微服务端口号都在8000-9000之间
+其中：</p>
+<ul>
+<li>SERVER的端口默认为 <code>8000-8099</code></li>
+<li>API的端口默认为 <code>8800-8889</code></li>
+<li>RPC服务的端口默认为 <code>8900-8999</code></li>
+</ul>
+<h3 id="已使用端口">已使用端口</h3>
+<ul>
+<li>server-course-pubsub =&gt; <code>8091</code></li>
+<li>server-live-pubsub =&gt; <code>8090</code></li>
+<li>server-jzh-rpc =&gt; <code>8900</code></li>
+<li>api-jzh-api =&gt; <code>8880</code></li>
+<li>api-order-biz =&gt; <code>8881</code></li>
+<li>api-wechat-callback =&gt; <code>8882</code></li>
+<li>api-spm-producer =&gt; <code>8883</code></li>
+</ul>
+<h2 id="开发规范">开发规范</h2>
+<ul>
+<li>
+<p>import规范</p>
+<ul>
+<li>1.引入系统包</li>
+<li>2.引入项目包</li>
+<li>3.引入其他第三方包</li>
+</ul>
+</li>
+<li>
+<p>常量全部大写用_隔开 如:API_HOST</p>
+</li>
+<li>
+<p>文件、目录：unix风格，小写字母和-拼接构成</p>
+</li>
+<li>
+<p>包：全部使用小写字母，不建议下划线；不同功能同一大类别package建议使用多级目录，进行子包隔离。</p>
+</li>
+<li>
+<p>变量命名基本上遵循相应的英文表达或简写,在相对简单的环境（对象数量少、针对性强）中，可以将一些名称由完整单词简写为单个字母，例如：user 可以简写为 u</p>
+</li>
+<li>
+<p>参数</p>
+<ul>
+<li>对于少量数据，不要传递指针</li>
+<li>对于大量数据的 struct 可以考虑使用指针</li>
+<li>传入的参数是 map，slice，chan 不要传递指针，因为 map，slice，chan是引用类型，不需要传递指针的指针</li>
+</ul>
+</li>
+<li>
+<p>注意添加doc</p>
+</li>
+<li>
+<p>函数</p>
+</li>
+<li>
+<p>采用命名的多值返回，传入变量和返回变量以小写字母开头</p>
+</li>
+<li>
+<p>函数返回值可能为空或零值时，最好加一个逻辑判断的返回值</p>
+</li>
+<li>
+<p>函数返回用显式，不要用隐式，避免返回值被重复定义，导致返回值错误，特别是error返回值</p>
+</li>
+<li>
+<p>结构精简</p>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">如:
+if err != nil {
+   // error handling
+} else {
+  // normal code
+}
+应改为
+if err != nil {
+   // error handling
+  return // or continue, etc.
+}
+// normal code
+</code></pre></div><h2 id="来源">来源</h2>
+<p><a href="https://git.nxdev.cn/groups/jzh/-/epics/26">Epics</a></p>
+
+		</div>
+
+		<div class="post-tags">
+			
+				
+			
+		</div>
+		</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> © Copyright notice |  <a href="https://github.com/vividvilla/ezhil">Ezhil theme</a> | Built with <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-123-45', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+<script>feather.replace()</script>
+</body>
+</html>

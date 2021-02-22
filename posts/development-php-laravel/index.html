@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>PHP开发规范 - 大业的大业</title><link rel="icon" type="image/png" href=icons/myicon.png /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="PHP开发规范" />
+<meta property="og:description" content="Laravel" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://boyisire.github.io/posts/development-php-laravel/" />
+<meta property="article:published_time" content="2019-08-08T18:18:57+08:00" />
+<meta property="article:modified_time" content="2019-08-08T18:18:57+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PHP开发规范"/>
+<meta name="twitter:description" content="Laravel"/>
+<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,300italic,400italic|Raleway:200,300" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boyisire.github.iocss/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://boyisire.github.iocss/main.css" />
+	<link rel="stylesheet" type="text/css" href="https://boyisire.github.iocss/custom.css" />
+	<link rel="stylesheet" type="text/css" href="https://boyisire.github.iocss/dark.css" media="(prefers-color-scheme: dark)" />
+	<link rel="stylesheet" type="text/css" href="https://boyisire.github.iocss/custom-dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+	<script src="https://boyisire.github.iojs/main.js"></script>
+	<script src="https://boyisire.github.iojs/abc.js"></script>
+	<script src="https://boyisire.github.iojs/xyz.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper post">
+		<div class="header">
+	<base href="https://boyisire.github.io">
+	<h1 class="site-title"><a href="https://boyisire.github.io">大业的大业</a></h1>
+	<div class="site-description"><h2>记录精彩瞬间</h2><nav class="nav social">
+			<ul class="flat"><a href="https://github.com/vividvilla/ezhil" title="Github"><i data-feather="github"></i></a></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/about">About</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post-header">
+			<h1 class="title">PHP开发规范</h1>
+			<div class="meta">Posted at &mdash; Aug 8, 2019</div>
+		</div>
+
+		<div class="markdown">
+			<h1 id="关于规范">关于规范</h1>
+<h2 id="说明">说明</h2>
+<p>这是一套严格的团队开发规范，该规范主要摘自Laravel China社区的<a href="https://learnku.com/docs/laravel-specification/5.5">《Laravel 项目开发规范》</a>,然后又根据咱们目前团队的使用情况，稍做了部分调整。
+<strong>注：</strong> 该规范目前还不太完善，需后续使用过程中，一点点完善起来.</p>
+<h2 id="优势">优势</h2>
+<p>规范有以下优点：</p>
+<ul>
+<li>高效编码 - 避免了过多的选择造成的『决策时间』浪费；</li>
+<li>风格统一 - 最大程度统一了开发团队成员代码书写风格和思路，代码阅读起来如出一辙；</li>
+<li>减少错误 - 减小初级工程师的犯错几率。</li>
+</ul>
+<h2 id="开发哲学">开发哲学</h2>
+<p>此规范遵循的『开发哲学』，开发中请把其当做指明灯，来指引你做决策：</p>
+<ul>
+<li>DRY –「Don&rsquo;t Repeat Yourself」不写重复的逻辑代码；</li>
+<li>约定俗成 - 「Convention Over Configuration」，优先选择框架提倡的做法，不过度配置；</li>
+<li>KISS - 「Keep it Simple, Stupid」提倡简单易读的代码，不写高深、晦涩难懂的代码，<strong>不过度设计</strong>；</li>
+<li>主厨精选 - 让有经验的人来为你选择方案，不独创方案；</li>
+<li>官方提倡 - 优先选择官方推崇的方案。</li>
+</ul>
+<h2 id="设计理念">设计理念</h2>
+<p>以下是一些优秀的『程序设计理念』：</p>
+<ul>
+<li>MVC - Model, View, Controller ，以 MVC 为核心，严格控制 Controller 的可读性和代码行数；</li>
+<li>Restful - 利用『资源化概念』和标准的 HTTP 动词来组织你的程序；</li>
+</ul>
+<p>在此规范中，我们会将使用这两套理念作为程序设计基础。这些设计理念为我们设计程序提供了依据，遵循这些理念，能让程序变得清晰易读。</p>
+<h1 id="过于灵活是一件糟糕的事情">过于灵活是一件糟糕的事情</h1>
+<h2 id="举例说明">举例说明</h2>
+<p>Laravel 文档和网上的各种教程，会教授我们一个任务可以使用好几种方法来完成。对于框架设计来说，灵活是件好事，能提供给开发者不同的选项，能让框架适用更多的用户场景。但是对于团队的协同开发来说，大部分时候，更多的选项反而是累赘。</p>
+<p>下面来举一个例子说明，假如你在为项目开发 <a href="http://learnku.com/docs/laravel/5.4/authorization">用户授权</a> 相关功能，仅 <code>注册用户权限</code> 这块你就会有以下三个选项：</p>
+<h3 id="选项-1-使用闭包">选项 1. 使用闭包：</h3>
+<p>你可以在 <code>AuthServiceProvider</code> 中使用 <a href="http://learnku.com/docs/laravel/5.4/authorization#defining-abilities">闭包注册用户权限</a></p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#268bd2">$gate</span><span style="color:#719e07">-&gt;</span>define(<span style="color:#2aa198">&#39;update-post&#39;</span>, <span style="color:#719e07">function</span> (<span style="color:#268bd2">$user</span>, <span style="color:#268bd2">$post</span>) {
+    <span style="color:#719e07">return</span> <span style="color:#268bd2">$user</span><span style="color:#719e07">-&gt;</span>id <span style="color:#719e07">===</span> <span style="color:#268bd2">$post</span><span style="color:#719e07">-&gt;</span>user_id;
+});
+</code></pre></div><h3 id="选项-2-自定义类方法">选项 2. 自定义类方法：</h3>
+<p>你可以在 <code>AuthServiceProvider</code> 中指定 <a href="http://learnku.com/docs/laravel/5.4/authorization#%E5%9F%BA%E4%BA%8E%E7%B1%BB%E7%9A%84%E6%9D%83%E9%99%90">类方法注册用户权限</a></p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#268bd2">$gate</span><span style="color:#719e07">-&gt;</span>define(<span style="color:#2aa198">&#39;update-post&#39;</span>, <span style="color:#2aa198">&#39;SomeClass@method&#39;</span>);
+</code></pre></div><p>这个时候又有决策需要你去做：</p>
+<ul>
+<li><code>SomeClass.php</code> 放在哪个文件夹合适呢？</li>
+<li>方法应该怎么取名合适呢？</li>
+<li>我放在这里是对的吗？</li>
+<li>大家都是怎么做的呢？</li>
+</ul>
+<h3 id="选项-3-policy-授权策略类">选项 3. Policy 授权策略类：</h3>
+<p>你可以使用 <a href="http://learnku.com/docs/laravel/5.4/authorization#policies">Policy 授权策略类</a> 来实现。如：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;?php
+
+namespace App\Policies;
+
+use App\User;
+use App\Post;
+
+class PostPolicy
+{
+    /**
+     * 判断指定的文章是否可以被该用户更新。
+     *
+     * @param  \App\User  $user
+     * @param  \App\Post  $post
+     * @return bool
+     */
+    public function update(User $user, Post $post)
+    {
+        return $user-&gt;id === $post-&gt;user_id;
+    }
+}
+</code></pre></div><h2 id="结论">结论</h2>
+<p>上面的例子，如果你独自开发个人项目倒是问题不大，最多一两年后回来看你的项目需要浪费点时间熟悉而已。然而，如果是在一个中大型的商业项目开发中，团队中有着几个甚至十几个开发者，没有规范的情况下，开发者会根据各自的喜好去选择，有时甚至出现一个开发者尝试多个选项的可能，就会造成整个团队产出的代码可读性极低，代码结构混乱，也为后面的项目代码的维护带来了难度。</p>
+<p>与其无休止的争论哪种选项最好，还不如只知道 <code>一种选项</code>。这 <code>一种选项</code> 能覆盖大部分的用例，且兼备开发效率、程序执行效率、扩展性、安全性等最佳实践，当再次遇到此类需求时，毫不犹豫地使用这 <code>一种选项</code> 直接了当地解决问题。</p>
+<p>决策已提前做好，没必要浪费时间多次决策，节省时间，提高效率。</p>
+<p>开发规范一旦统一，所有团队成员严格遵守，你会发现，你的队友写的代码就如你自己写的一样，编码愉悦感提高了，整个项目代码阅读起来更加流畅，工作效率自然也会因此提高，同时代码的健壮性也得到了保障。</p>
+<h1 id="关于能愿动词的使用">关于「能愿动词」的使用</h1>
+<h2 id="能愿动词">能愿动词</h2>
+<p>为了避免歧义，文档大量使用了「能愿动词」，对应的解释如下：</p>
+<ul>
+<li>必须（Must） - 只能这样子做，请无条件遵循，没有别的选项；</li>
+<li>绝不（Must Not）- 严令禁止，在任何情况下都不能这样做；</li>
+<li>应该（Should） - 强烈建议这样做，但是不强求；</li>
+<li>不应该（Should Not） - 强烈建议不这样做，但是不强求；</li>
+<li>可以（May） - 选择性高一点，在这个文档内，此词语使用较少；</li>
+</ul>
+<blockquote>
+<p>参考：<a href="http://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a></p>
+</blockquote>
+<h2 id="关于执行">关于执行</h2>
+<p>在这份规范里，有些内容里会解释『这样做的理由』，这样做的目的是为了达成共识。</p>
+<blockquote>
+<p>请不要以此『理由』的准确性来怀疑规范的权威性，规范就是规范，可以讨论改正，但在执行的时候 <strong>必须</strong> 严格遵守。</p>
+</blockquote>
+<p>请把『团队项目开发』想象就是在行军打仗，对于规范要绝对服从。要有大局观，做到团结一致，把个人的喜好放一边，把整个团队的执行效率放在第一位。</p>
+<h1 id="推荐阅读">推荐阅读</h1>
+<p>如果可以，建议经常性查阅以下资料，以提高工作效率和技能水平.</p>
+<h2 id="文档资料">文档资料</h2>
+<ul>
+<li><strong>必须</strong> 熟记 <a href="https://learnku.com/docs/laravel/5.5">Laravel 5.5 官方文档</a>，查阅时能快速定位，5 遍以上；</li>
+<li><strong>必须</strong> 熟记 <a href="https://laravel.com/api/5.5/">Laravel 5.5 API 文档</a> 的类结构，查阅时能快速定位；</li>
+<li><strong>必须</strong> 熟记所有 <a href="https://github.com/summerblue/psr.phphub.org">PSR 通过的标准</a>；</li>
+<li>PSR 目前还未通过的标准，也要 <strong>应该</strong> 知晓 <a href="http://www.php-fig.org/psr/#draft">http://www.php-fig.org/psr/#draft</a></li>
+<li><strong>应该</strong> 熟悉 <a href="http://laravel-china.github.io/php-the-right-way/">PHP 最佳实践</a></li>
+<li><strong>应该</strong> 了解 <a href="https://ruby-china.org/wiki/the-rails-doctrine">『Rails 信条』</a></li>
+</ul>
+<h1 id="开发和线上环境">开发和线上环境</h1>
+<h2 id="环境说明">环境说明</h2>
+<p>目前团队，项目主要有下面三个基本环境构成：</p>
+<ul>
+<li>Local - 本地开发环境</li>
+<li>Devlop - 线上测试环境</li>
+<li>Production - 线上生产环境</li>
+</ul>
+<h2 id="使用软件">使用软件</h2>
+<h3 id="服务器系统">服务器系统</h3>
+<p>目前使有的是<code>Centos 7</code></p>
+<h3 id="php-7">PHP 7</h3>
+<p>PHP 版本 <strong>应该</strong> 优先考虑 PHP 7，不止因为其运行高效，还因为随着 PHP 7 的广泛应用，PHP 7 以下的版本将会很快停止维护。
+目前项目主要使用:<code>PHP7.2</code></p>
+<h3 id="mysql-57">MySQL 5.7</h3>
+<p>数据库软件 <strong>应该</strong> 优先选择 MySQL，因为其使用率最高。MySQL 5.7 与 PHP 7 一样，已经是大势所趋，选择版本时 <strong>应该</strong> 优先考虑 MySQL 5.7。</p>
+<h3 id="其他软件">其他软件</h3>
+<p><strong>应该</strong> 优先选择 <strong>流行</strong> <strong>稳定</strong> 版本。线上环境 <strong>绝不</strong> 使用 Beta 或者其他不稳定发行版。</p>
+<h2 id="production-生产环境">Production 生产环境</h2>
+<p>出于安全考虑，目前线上环境 对外，仅开放了以下端口：</p>
+<ul>
+<li>80 HTTP</li>
+<li>443 HTTPS</li>
+<li>22 SSH</li>
+</ul>
+<h2 id="local-开发环境">Local 开发环境</h2>
+<p>所有项目 <strong>必须</strong> 使用 <code>vagrant</code>作为应用程序运行的环境。</p>
+<ul>
+<li>统一使用域名 <code>local.</code> 作为二级域名；</li>
+<li>统一使用 IP <code>192.168.33.33</code> 作为 <code>hosts</code> 绑定地址，如：<code>192.168.33.33  local.nxdev.cn</code></li>
+</ul>
+<h2 id="devlop-线上测试环境">Devlop 线上测试环境</h2>
+<p>除了域名等其他独立应用配置以外，环境 <strong>必须</strong> 跟 Production 保持高度一致性，可以的话 <strong>应该</strong> 与 Production 使用同台机器。</p>
+<h2 id="使用工具统一">使用工具统一</h2>
+<p>工具的统一，是为了方便工作流的统一，还有工具使用经验的传承。</p>
+<p>团队里的成员，经常需要互相使用对方电脑来讨论问题、查看某段代码、Debug 某个功能，工具统一起来后，你会发现，虽然是别人的电脑，工具使用起来是熟悉的，用起来就跟自己的电脑一样顺手，自然的工作效率就会提高。</p>
+<ul>
+<li>系统：Mac 版本 10.10 以上</li>
+<li>编辑器：<a href="https://code.visualstudio.com/">VScode</a> or <a href="https://www.sublimetext.com/">Sublime</a></li>
+<li>编辑器代码格式化：<a href="http://editorconfig.org/">EditorConfig</a></li>
+<li>PHP 代码风格矫正器：<a href="http://learnku.com/docs/laravel/5.5/contributions#%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E7%9F%AB%E6%AD%A3%E5%99%A8">PHP-CS-Fixer</a></li>
+<li>命令行工具：<a href="https://www.iterm2.com/">iTerm2</a></li>
+<li>浏览器：<a href="https://www.google.com/chrome/browser/desktop/index.html">Chrome</a></li>
+<li>虚拟机：<a href="https://www.virtualbox.org/">VirtualBox</a></li>
+<li>MySQL 数据库查询工具：<a href="http://www.sequelpro.com/">Sequel Pro</a></li>
+<li>Redis 管理工具：<a href="http://redisdesktop.com/">RDM</a></li>
+<li>MongoDB 管理工具：<a href="https://robomongo.org/">Robo 3T</a></li>
+<li>@todo zsh 的配置信息统一，Alias 等信息。</li>
+</ul>
+<h1 id="代码风格">代码风格</h1>
+<p>代码风格 <strong>必须</strong> 严格遵循 <a href="http://www.php-fig.org/psr/psr-2/">PSR-2</a> 规范。</p>
+<h1 id="项目结构">项目结构</h1>
+<ul>
+<li>Core PHP项目公用核心库，主要存放：<code>数据层-Models</code>、<code>助手类函数-Utils</code>、<code>第三方应用-Services</code>、<code>公用配置-Config</code>、<code>共用事件-Event</code>、<code>共用任务-Jobs</code>等</li>
+</ul>
+<blockquote>
+<p>在具体项目中的composer文件中，加入如下内容即可：</p>
+</blockquote>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&#34;autoload&#34;: {
+        &#34;psr-4&#34;: {
+            &#34;App\\&#34;: &#34;app/&#34;,
+            &#34;Core\\&#34;: &#34;../core/&#34;
+        }
+    },
+</code></pre></div><ul>
+<li>Admin 后台管理系统</li>
+<li>Api 家长会业务接口</li>
+</ul>
+<h1 id="开发专用扩展包">开发专用扩展包</h1>
+<h2 id="说明-1">说明</h2>
+<p>我们都知道 Laravel 扩展包的注册会对应用造成消耗。有一些扩展包是开发环境中专用，生产环境中并不会使用到，为了避免无用的负载， 必须严格控制其安装和加载。</p>
+<h2 id="安装">安装</h2>
+<p>安装开发专用扩展包时 <strong>必须</strong> 使用 <code>--dev</code> 参数，如：</p>
+<pre><code>composer require laracasts/generators --dev
+</code></pre>
+<h2 id="加载">加载</h2>
+<p>开发专用的 provider <code>绝不</code>在 <code>config/app.php</code> 里面注册，<code>必须</code> 在 <code>app/Providers/AppServiceProvider.php</code> 文件中使用如以下方式：</p>
+<pre><code>public function register()
+{
+    if ($this-&gt;app-&gt;environment() == 'local') {
+        $this-&gt;app-&gt;register('Laracasts\Generators\GeneratorsServiceProvider');
+    }
+}
+</code></pre>
+<h1 id="配置信息与环境变量">配置信息与环境变量</h1>
+<h2 id="问题说明">问题说明</h2>
+<p>假如我们有个『CDN 域名』的变量，在 Laravel 中有以下几种方法：</p>
+<ol>
+<li>硬代码，直接写死。- ❌ 可维护性低</li>
+<li>写死在 <code>config/app.php</code> 文件中。 - ❌ 无法区分环境进行配置</li>
+<li>存储于 <code>.env</code> 文件中，使用 <code>env()</code> 方法直接读取。 - ❌ 虽然解决了环境变量问题但是不推荐</li>
+<li>存储在  <code>.env</code> 和 <code>config/app.php</code> 文件中，然后使用 <code>config()</code> 函数来读取。- ✅ 最佳实践</li>
+</ol>
+<p>第一种方法是最古老的方法，代码可维护性极低，一旦域名变更就只能全局替换。第二种方法无法区分环境，例如本地使用开发环境域名测试，线上才是正式的 CDN 域名。第三种方法虽然解决了环境变量的问题，并且也具备一定的灵活性，但是不够灵活，假如你的网站流量巨大，需要配置几个 CDN 域名，使其在加载静态资源时随机支配域名，这种做法就无法满足需求了。第四种方法既支持环境变量，又具备极高的灵活性，假如遇到同样的 CDN 多域名随机问题，你只需要写一个辅助方法，然后在 <code>config/app.php</code> 中调用即可，不需要动到任何一行业务逻辑代码。</p>
+<h2 id="代码示例">代码示例</h2>
+<p><code>.env</code> 文件中设置：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">CDN_DOMAIN=cdndomain.com
+</code></pre></div><p><code>config/app.php</code> 文件中设置：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&#39;cdn_domain&#39; =&gt; env(&#39;CDN_DOMAIN&#39;, null),
+</code></pre></div><p>程序中两种获取 <code>相同配置</code> 的方法：</p>
+<ol>
+<li><code>env('CDN_DOMAIN')</code></li>
+<li><code>config('app.cdn_domain')</code></li>
+</ol>
+<p>在此统一规定：所有程序配置信息 <strong>必须</strong> 通过 <code>config()</code> 来读取，所有的 <code>.env</code> 配置信息 <strong>必须</strong> 通过 <code>config()</code> 来读取，<strong>绝不</strong> 在配置文件以外的范围使用 <code>env()</code>。</p>
+<h2 id="有何优势">有何优势</h2>
+<p>这样做主要有以下几个优势：</p>
+<ol>
+<li>定义分明，<code>config()</code> 是配置信息，<code>env()</code> 只是用来区分不同环境；</li>
+<li>统一放置于 <code>config</code> 中还可以利用框架的 <a href="http://learnku.com/docs/laravel/5.5/installation#configuration-caching">配置信息缓存功能</a> 来提高运行效率；</li>
+<li>代码健壮性， <code>config()</code> 在 <code>env()</code> 之上多出来一个抽象层，会使代码更加健壮，更加灵活。</li>
+</ol>
+<blockquote>
+<p>注： Laravel 5.2 以后的官方文档也提倡用此方法。</p>
+</blockquote>
+<h1 id="路由器">路由器</h1>
+<h2 id="路由闭包">路由闭包</h2>
+<p><strong>绝不</strong> 在路由配置文件里书写『闭包路由』或者其他业务逻辑代码，因为一旦使用将无法使用 <a href="http://learnku.com/docs/laravel/5.5/controllers#route-caching">路由缓存</a> 。</p>
+<p>路由器要保持干净整洁，<strong>绝不</strong> 放置除路由配置以外的其他程序逻辑。</p>
+<h2 id="restful-路由">Restful 路由</h2>
+<p><strong>必须</strong> 优先使用 Restful 路由，配合资源控制器使用，见 <a href="http://learnku.com/docs/laravel/5.5/controllers#RESTful-%E8%B5%84%E6%BA%90%E6%8E%A7%E5%88%B6%E5%99%A8">文档</a>。</p>
+<p><img src="https://iocaffcdn.phphub.org/uploads/images/201705/19/1/09GHC72ygP.png" alt="file"></p>
+<p>超出 Restful 路由的，<strong>应该</strong> 模仿上图的方式来定义路由。</p>
+<h2 id="resource-方法正确使用">resource 方法正确使用</h2>
+<p>一般资源路由定义：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">Route::resource(&#39;photos&#39;, &#39;PhotosController&#39;);
+</code></pre></div><p>等于以下路由定义：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">Route<span style="color:#719e07">::</span>get(<span style="color:#2aa198">&#39;/photos&#39;</span>, <span style="color:#2aa198">&#39;PhotosController@index&#39;</span>)<span style="color:#719e07">-&gt;</span>name(<span style="color:#2aa198">&#39;photos.index&#39;</span>);
+Route<span style="color:#719e07">::</span>get(<span style="color:#2aa198">&#39;/photos/create&#39;</span>, <span style="color:#2aa198">&#39;PhotosController@create&#39;</span>)<span style="color:#719e07">-&gt;</span>name(<span style="color:#2aa198">&#39;photos.create&#39;</span>);
+Route<span style="color:#719e07">::</span>post(<span style="color:#2aa198">&#39;/photos&#39;</span>, <span style="color:#2aa198">&#39;PhotosController@store&#39;</span>)<span style="color:#719e07">-&gt;</span>name(<span style="color:#2aa198">&#39;photos.store&#39;</span>);
+Route<span style="color:#719e07">::</span>get(<span style="color:#2aa198">&#39;/photos/{photo}&#39;</span>, <span style="color:#2aa198">&#39;PhotosController@show&#39;</span>)<span style="color:#719e07">-&gt;</span>name(<span style="color:#2aa198">&#39;photos.show&#39;</span>);
+Route<span style="color:#719e07">::</span>get(<span style="color:#2aa198">&#39;/photos/{photo}/edit&#39;</span>, <span style="color:#2aa198">&#39;PhotosController@edit&#39;</span>)<span style="color:#719e07">-&gt;</span>name(<span style="color:#2aa198">&#39;photos.edit&#39;</span>);
+Route<span style="color:#719e07">::</span>put(<span style="color:#2aa198">&#39;/photos/{photo}&#39;</span>, <span style="color:#2aa198">&#39;PhotosController@update&#39;</span>)<span style="color:#719e07">-&gt;</span>name(<span style="color:#2aa198">&#39;photos.update&#39;</span>);
+Route<span style="color:#719e07">::</span>delete(<span style="color:#2aa198">&#39;/photos/{photo}&#39;</span>, <span style="color:#2aa198">&#39;PhotosController@destroy&#39;</span>)<span style="color:#719e07">-&gt;</span>name(<span style="color:#2aa198">&#39;photos.destroy&#39;</span>);
+</code></pre></div><p>使用 <code>resource</code> 方法时，如果仅使用到部分路由，<strong>必须</strong> 使用 <code>only</code> 列出所有可用路由：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">Route::resource(&#39;photos&#39;, &#39;PhotosController&#39;, [&#39;only&#39; =&gt; [&#39;index&#39;, &#39;show&#39;]]);
+</code></pre></div><p><strong>绝不</strong> 使用 <code>except</code>，因为 <code>only</code> 相当于白名单，相对于 <code>except</code> 更加直观。路由使用白名单有利于养成『安全习惯』。</p>
+<h2 id="单数-or-复数">单数 or 复数？</h2>
+<p>资源路由路由 URI <strong>必须</strong> 使用复数形式，如：</p>
+<ul>
+<li><code>/photos/create</code></li>
+<li><code>/photos/{photo}</code></li>
+</ul>
+<p>错误的例子如：</p>
+<ul>
+<li><code>/photo/create</code></li>
+<li><code>/photo/{photo}</code></li>
+</ul>
+<h2 id="路由模型绑定">路由模型绑定</h2>
+<p>在允许使用路由 <a href="http://learnku.com/docs/laravel/5.5/routing#route-model-binding">模型绑定</a> 的地方 <strong>必须</strong> 使用。</p>
+<p>模型绑定代码 <strong>必须</strong> 放置于 <code>app/Providers/RouteServiceProvider.php</code> 文件的 <code>boot</code> 方法中：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    public function boot()
+    {
+        Route::bind(&#39;user_name&#39;, function ($value) {
+            return User::where(&#39;name&#39;, $value)-&gt;first();
+        });
+
+        Route::bind(&#39;photo&#39;, function ($value) {
+            return Photo::find($value);
+        });
+
+        parent::boot();
+    }
+</code></pre></div><h2 id="全局路由器参数">全局路由器参数</h2>
+<p>出于安全考虑，<strong>应该</strong> 使用全局路由器参数限制，详见 <a href="http://learnku.com/docs/laravel/5.5/routing#%E5%85%A8%E5%B1%80%E9%99%90%E5%88%B6">文档</a>。</p>
+<p><strong>必须</strong> 在 <code>RouteServiceProvider</code> 文件的 boot 方法里定义模式：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#2aa198">/**
+</span><span style="color:#2aa198"> * 定义你的路由模型绑定，模式过滤器等。
+</span><span style="color:#2aa198"> *
+</span><span style="color:#2aa198"> * @param  \Illuminate\Routing\Router  $router
+</span><span style="color:#2aa198"> * @return void
+</span><span style="color:#2aa198"> */</span>
+<span style="color:#719e07">public</span> <span style="color:#719e07">function</span> <span style="color:#268bd2">boot</span>(Router <span style="color:#268bd2">$router</span>)
+{
+    <span style="color:#268bd2">$router</span><span style="color:#719e07">-&gt;</span>pattern(<span style="color:#2aa198">&#39;id&#39;</span>, <span style="color:#2aa198">&#39;[0-9]+&#39;</span>);
+
+    <span style="color:#719e07">parent</span><span style="color:#719e07">::</span>boot(<span style="color:#268bd2">$router</span>);
+}
+</code></pre></div><p>模式一旦被定义，便会自动应用到所有使用该参数名称的路由上：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">Route<span style="color:#719e07">::</span>get(<span style="color:#2aa198">&#39;users/{id}&#39;</span>, <span style="color:#2aa198">&#39;UsersController@show&#39;</span>);
+Route<span style="color:#719e07">::</span>get(<span style="color:#2aa198">&#39;photos/{id}&#39;</span>, <span style="color:#2aa198">&#39;PhotosController@show&#39;</span>);
+</code></pre></div><p>只有在 <code>id</code> 为数字时，才会路由到控制器方法中，否则 404 错误。</p>
+<h2 id="路由命名">路由命名</h2>
+<p>除了 <code>resource</code> 资源路由以外，其他所有路由都 <strong>必须</strong> 使用 <code>name</code> 方法进行命名。</p>
+<p><strong>必须</strong> 使用『资源前缀』作为命名规范，如下的 <code>users.follow</code>，资源前缀的值是 <code>users.</code>：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">Route::post(&#39;users/{id}/follow&#39;, &#39;UsersController@follow&#39;)-&gt;name(&#39;users.follow&#39;);
+</code></pre></div><h2 id="获取-url">获取 URL</h2>
+<p>获取 URL <strong>必须</strong> 遵循以下优先级：</p>
+<ol>
+<li><code>$model-&gt;link()</code></li>
+<li><code>route</code> 方法</li>
+<li><code>url</code> 方法</li>
+</ol>
+<p>在 Model 中创建 <code>link()</code> 方法：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">public function link($params = [])
+{
+	$params = array_merge([$this-&gt;id], $params);
+	return route(&#39;models.show&#39;, $params);
+}
+</code></pre></div><p>所有单个模型数据链接使用：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$model-&gt;link();
+
+// 或者添加参数
+$model-&gt;link($params = [&#39;source&#39; =&gt; &#39;list&#39;])
+</code></pre></div><p>『单个模型 URI』经常会发生变化，这样做将会让程序更加灵活。</p>
+<p>除了『单个模型 URI』，其他路由 <strong>必须</strong> 使用 <code>route</code> 来获取 URL：</p>
+<pre><code>$url = route('profile', ['id' =&gt; 1]);
+</code></pre>
+<p>无法使用 <code>route</code> 的情况下，<strong>可以</strong> 使用 <code>url</code> 方法来获取 URL：</p>
+<pre><code>url('profile', [1]);
+</code></pre>
+<h1 id="数据模型">数据模型</h1>
+<h2 id="放置位置">放置位置</h2>
+<p>所有的数据模型文件，都 <strong>必须</strong> 存放在：core/Models/` 文件夹中。</p>
+<p>命名空间：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">namespace Core\Models;
+</code></pre></div><h2 id="userphp">User.php</h2>
+<p>Laravel 5.1 默认安装会把 <code>User</code> 模型存放在 <code>app/User.php</code>，<strong>必须</strong> 移动到 <code>Core/Models</code> 文件夹中，并修改命名空间声明为 <code>Core/Models</code>，同上。</p>
+<p>为了不破坏原有的逻辑点，<strong>必须</strong> 全局搜索 <code>App/User</code> 并替换为 <code>Core/Models/User</code>。</p>
+<h2 id="使用基类">使用基类</h2>
+<p>所有的 <strong>Eloquent 数据模型</strong> 都 <strong>必须</strong> 继承统一的基类 <code>App/Models/Model</code>，此基类存放位置为 <code>/app/Models/Model.php</code>，内容参考以下：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model as EloquentModel;
+
+class Model extends EloquentModel
+{
+    public function scopeRecent($query)
+    {
+        return $query-&gt;orderBy(&#39;created_at&#39;, &#39;desc&#39;);
+    }
+}
+</code></pre></div><p>以 Photo 数据模型作为例子继承 Model 基类：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;?php
+
+namespace App\Models;
+
+class Photo extends Model
+{
+    protected $fillable = [&#39;id&#39;, &#39;user_id&#39;];
+
+    public function user()
+    {
+        return $this-&gt;belongsTo(User::class);
+    }
+}
+</code></pre></div><h2 id="命名规范">命名规范</h2>
+<p>数据模型相关的命名规范：</p>
+<ul>
+<li>数据模型类名 <code>必须</code> 为「单数」, 如：<code>App\Models\Photo</code></li>
+<li>类文件名 <code>必须</code> 为「单数」，如：<code>app/Models/Photo.php</code></li>
+<li>数据库表名字 <code>必须</code> 为「复数」，多个单词情况下使用「<a href="https://en.wikipedia.org/wiki/Snake_case">Snake Case</a>」 如：<code>photos</code>, <code>my_photos</code></li>
+<li>数据库表迁移名字 <code>必须</code> 为「复数」，如：<code>2014_08_08_234417_create_photos_table.php</code></li>
+<li>数据填充文件名 <code>必须</code> 为「复数」，如：<code>PhotosTableSeeder.php</code></li>
+<li>数据库字段名 <code>必须</code> 为「<a href="https://en.wikipedia.org/wiki/Snake_case">Snake Case</a>」，如：<code>view_count</code>, <code>is_vip</code></li>
+<li>数据库表主键 <code>必须</code> 为「id」</li>
+<li>数据库表外键 <code>必须</code> 为「resource_id」，如：<code>user_id</code>, <code>post_id</code></li>
+<li>数据模型变量 <code>必须</code> 为「resource_id」，如：<code>$user_id</code>, <code>$post_id</code></li>
+</ul>
+<h2 id="利用-trait-来扩展数据模型">利用 Trait 来扩展数据模型</h2>
+<p>有时候数据模型里的代码会变得很臃肿，<strong>应该</strong> 利用 Trait 来精简逻辑代码量，提高可读性，类似于 <a href="https://github.com/ruby-china/ruby-china/blob/master/app/models/topic.rb#L11-L17">Ruby China 源码</a>。</p>
+<blockquote>
+<p>借鉴于 Rails 的设计理念：「Fat Models, Skinny Controllers」。</p>
+</blockquote>
+<p>存放于文件夹：<code>app/Models/Traits</code> 文件夹中。</p>
+<h2 id="repository">Repository</h2>
+<p><strong>绝不</strong> 使用 Repository，因为我们不是在写 JAVA 代码，太多封装就成了「过度设计（Over Designed）」，极大降低了编码愉悦感，使用 MVC 够傻够简单。</p>
+<p>代码的可读性，维护和开发的便捷性，直接关系到程序员开发时的愉悦感，直接影响到项目推进效率和程序 Debug 的速度。</p>
+<h2 id="关于-sql-文件">关于 SQL 文件</h2>
+<ul>
+<li><strong>绝不</strong> 使用命令行或者 PHPMyAdmin 直接创建索引或表。<strong>必须</strong> 使用 <a href="http://learnku.com/docs/laravel/5.5/migrations">数据库迁移</a> 去创建表结构，并提交版本控制器中；</li>
+<li><strong>绝不</strong> 为了共享对数据库更改就直接导出 SQL，所有修改都 <strong>必须</strong> 使用 <a href="http://learnku.com/docs/laravel/5.5/migrations">数据库迁移</a> ，并提交版本控制器中；</li>
+<li><strong>绝不</strong> 直接向数据库手动写入伪造的测试数据。<strong>必须</strong> 使用 <a href="http://learnku.com/docs/laravel/5.5/seeding">数据填充</a> 来插入假数据，并提交版本控制器中。</li>
+</ul>
+<h2 id="全局作用域">全局作用域</h2>
+<p>Laravel 的 <a href="https://learnku.com/docs/laravel/5.3/eloquent#global-scopes">Model 全局作用域</a> 允许我们为给定模型的所有查询添加默认的条件约束。</p>
+<p>所有的全局作用域都 <strong>必须</strong> 统一使用 <code>闭包定义全局作用域</code>，如下：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">/**
+ * 数据模型的启动方法
+ *
+ * @return void
+ */
+protected static function boot()
+{
+	parent::boot();
+
+	static::addGlobalScope(&#39;age&#39;, function(Builder $builder) {
+		$builder-&gt;where(&#39;age&#39;, &#39;&gt;&#39;, 200);
+	});
+}
+</code></pre></div><h1 id="控制器">控制器</h1>
+<h2 id="资源控制器">资源控制器</h2>
+<p><strong>必须</strong> 优先使用 <a href="http://learnku.com/docs/laravel/5.5/controllers#restful-resource-controllers">Restful 资源控制器</a> 。</p>
+<h2 id="单数-or-复数-1">单数 or 复数？</h2>
+<p><strong>必须</strong> 使用资源的复数形式，如：</p>
+<blockquote>
+<ul>
+<li>类名：PhotosController</li>
+<li>文件名：PhotosController.php</li>
+</ul>
+</blockquote>
+<p>错误的例子：</p>
+<blockquote>
+<ul>
+<li>类名：PhotoController</li>
+<li>文件名：PhotoController.php</li>
+</ul>
+</blockquote>
+<h2 id="保持短小精炼">保持短小精炼</h2>
+<p><strong>必须</strong> 保持控制器文件代码行数最小化，还有可读性。</p>
+<ul>
+<li><strong>不应该</strong> 为「方法」书写注释，这要求方法取名要足够合理，不需要过多注释；</li>
+<li><strong>应该</strong> 为一些复杂的逻辑代码块书写注释，主要介绍产品逻辑 - <code>为什么要这么做。</code>；</li>
+<li><strong>不应该</strong> 在控制器中书写「私有方法」，控制器里 <code>应该</code> 只存放「路由动作方法」；</li>
+<li><strong>绝不</strong> 遗留「死方法」，就是没有用到的方法，控制器里的所有方法，都应该被使用到，否则应该删除；</li>
+<li><strong>绝不</strong> 在控制器里批量注释掉代码，无用的逻辑代码就必须清除掉。</li>
+</ul>
+<h1 id="视图">视图</h1>
+<h2 id="优先使用-blade">优先使用 Blade</h2>
+<p>视图文件 <strong>必须</strong> 优先考虑使用 <code>.blade.php</code> 后缀来指定使用 Blade 模板引擎。</p>
+<h2 id="保持目录清晰">保持目录清晰</h2>
+<ul>
+<li>layouts - 页面布局文件 <strong>必须</strong> 放置于此目录下；</li>
+<li>common - 存放页面通用元素；</li>
+<li>pages - 简单的页面存放文件夹，如：about、contact 等；</li>
+<li>resources - 对应 Restful 路由的资源路径名称，以 URI <code>photos/create</code> 为例，对应 <code>create.blade.php</code> 文件，存放在文件夹 <code>photos</code> 下。</li>
+</ul>
+<p><strong>必须</strong> 避免在 <code>resources/views</code> 目录下直接放置视图文件。</p>
+<h2 id="局部视图">局部视图</h2>
+<p>局部视图文件 <strong>必须</strong> 使用 <code>_</code> 前缀来命名，如：<code>photos/_upload_form.blade.php</code></p>
+<h2 id="视图命名要释义">视图命名要释义</h2>
+<p>为了和 Restful 路由器和资源控制器保持一致，视图命名也 <strong>必须</strong> 使用资源视图的命名方式。以 <code>photos</code> 为例：</p>
+<ul>
+<li><code>photos/index.blade.php</code>
+<ul>
+<li>内容列表视图</li>
+<li>对应路由器 <code>/photos</code>，命名 <code>photos.index</code></li>
+<li>控制器方法 <code>PhotosController@index</code></li>
+</ul>
+</li>
+<li><code>photos/show.blade.php</code>
+<ul>
+<li>单个内容视图</li>
+<li>对应路由器 <code>/photos/{id}</code>，命名 <code>photos.show</code></li>
+<li>控制器方法 <code>PhotosController@show</code></li>
+</ul>
+</li>
+<li><code>photos/create.blade.php</code>
+<ul>
+<li>内容创建视图</li>
+<li>对应路由器 <code>/photos/create</code>，命名 <code>photos.create</code></li>
+<li>控制器方法 <code>PhotosController@create</code></li>
+</ul>
+</li>
+<li><code>photos/edit.blade.php</code>
+<ul>
+<li>内容编辑的视图</li>
+<li>对应路由器 <code>/photos/edit</code>，命名 <code>photos.edit</code></li>
+<li>控制器方法 <code>PhotosController@edit</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="create_and_edit-视图"><code>create_and_edit</code> 视图</h2>
+<p>很多情况下，创建和编辑视图里的页面结构接近相似，在这种情况下，<strong>应该</strong> 使用 <code>create_and_edit</code> 视图。以 <code>photos</code> 为例：</p>
+<ul>
+<li><code>PhotosController@create</code> - 对应视图：<code>/photos/create_and_edit.blade.php</code></li>
+<li><code>PhotosController@edit</code> - 对应 视图：<code>/photos/create_and_edit.blade.php</code></li>
+</ul>
+<p>这样一来，通常情况下，一个完整的 <code>photos</code> 资源对应的视图文件为以下：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">├── photos
+│   ├── create_and_edit.blade.php
+│   ├── index.blade.php
+│   └── show.blade.php
+</code></pre></div><h1 id="表单验证">表单验证</h1>
+<h2 id="表单请求验证类">表单请求验证类</h2>
+<p><strong>必须</strong> 使用 <a href="http://learnku.com/docs/laravel/5.5/validation#form-request-validation">表单请求 - FormRequest 类</a> 来处理控制器里的表单验证。</p>
+<h2 id="验证类的-authorize">验证类的 authorize</h2>
+<p><strong>绝不</strong> 使用 <code>authorize()</code> 方法来做用户授权，用户授权我们会单独使用 <a href="https://learnku.com/courses/laravel-specification/508/policy">Policy 授权策略</a> 来实现。</p>
+<h2 id="使用基类-1">使用基类</h2>
+<p>所有 FormRequest 表验证类 <strong>必须</strong> 继承 <code>app/Http/Requests/Request.php</code> 基类。基类文件如下：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class Request extends FormRequest
+{
+    public function authorize()
+    {
+    	// Using policy for Authorization
+        return true;
+    }
+}
+</code></pre></div><h2 id="验证类命名">验证类命名</h2>
+<p>FormRequest 表验证类 <strong>必须</strong> 遵循 <strong>资源路由</strong> 方式进行命名，<code>photos</code> 对应 <code>app/Http/Requests/PhotoRequest.php</code> 。</p>
+<h2 id="类文件参考">类文件参考</h2>
+<p>FormRequest 表验证类文件请参考以下：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;?php
+
+namespace App\Http\Requests;
+
+class PhotoRequest extends Request
+{
+    public function rules()
+    {
+        switch($this-&gt;method())
+        {
+            // CREATE
+            case &#39;POST&#39;:
+            {
+                return [
+                    // CREATE ROLES
+                ];
+            }
+            // UPDATE
+            case &#39;PUT&#39;:
+            case &#39;PATCH&#39;:
+            {
+                return [
+                    // UPDATE ROLES
+                ];
+            }
+            case &#39;GET&#39;:
+            case &#39;DELETE&#39;:
+            default:
+            {
+                return [];
+            };
+        }
+    }
+
+    public function messages()
+    {
+        return [
+            // Validation messages
+        ];
+    }
+}
+
+</code></pre></div><h1 id="授权策略">授权策略</h1>
+<h2 id="授权策略-1">授权策略</h2>
+<p><strong>必须</strong> 使用 <a href="http://learnku.com/docs/laravel/5.5/authorization#policies">授权策略</a> 类来做用户授权。</p>
+<h2 id="使用基类-2">使用基类</h2>
+<p>所有 Policy 授权策略类 <strong>必须</strong> 继承 <code>app/Policies/Policy.php</code> 基类。基类文件如下：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;?php
+
+namespace App\Policies;
+
+use Illuminate\Auth\Access\HandlesAuthorization;
+
+class Policy
+{
+    use HandlesAuthorization;
+
+    public function __construct()
+    {
+        //
+    }
+
+    public function before($user, $ability)
+	{
+	    if ($user-&gt;isAdmin()) {
+    		return true;
+	    }
+	}
+}
+</code></pre></div><h2 id="授权策略命名">授权策略命名</h2>
+<p>Policy 授权策略类 <strong>必须</strong> 遵循 <strong>资源路由</strong> 方式进行命名，<code>photos</code> 对应 <code>/app/Policies/PhotoPolicy.php</code> 。</p>
+<h2 id="类文件参考-1">类文件参考</h2>
+<p>Policy 授权策略类文件内容请参考以下：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;?php
+
+namespace App\Policies;
+
+use App\Models\User;
+use App\Models\Photo;
+
+class PhotoPolicy extends Policy
+{
+    public function update(User $user, Photo $photo)
+    {
+        return $user-&gt;isAuthorOf($photo);
+    }
+
+    public function destroy(User $user, Photo $photo)
+    {
+        return $user-&gt;isAuthorOf($photo);
+    }
+}
+
+</code></pre></div><h2 id="自动判断授权策略">自动判断授权策略</h2>
+<p><strong>应该</strong> 使用 <a href="http://learnku.com/docs/laravel/5.5/authorization#%E8%87%AA%E5%8A%A8%E5%88%A4%E6%96%AD%E6%8E%88%E6%9D%83%E7%AD%96%E7%95%A5%E6%96%B9%E6%B3%95">自动判断授权策略方法</a>，这样控制器和授权类的方法名就统一起来了。</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">/**
+ * 更新指定的文章。
+ *
+ * @param  int  $id
+ * @return Response
+ */
+public function update($id)
+{
+    $post = Post::findOrFail($id);
+
+	// 会自动调用 `PostPolicy` 类中的 `update` 方法。
+    $this-&gt;authorize($post);
+
+    // 更新文章...
+}
+</code></pre></div><h1 id="数据填充">数据填充</h1>
+<h2 id="factory-辅助函数">factory 辅助函数</h2>
+<p><code>必须</code> 使用 <code>factory</code> 方法来做数据填充，因为是框架提倡的，并且可以同时为测试代码服务。</p>
+<h2 id="运行效率">运行效率</h2>
+<p>开发数据填充时，<code>必须</code> 特别注意 <code>php artisan db:seed</code> 的运行效率，否则随着项目的代码量越来越大，<code>db:seed</code> 的运行时间会变得越来越长，有些项目多达几分钟甚至几十分钟。</p>
+<p>原则是：</p>
+<blockquote>
+<p>Keep it lighting speed.</p>
+</blockquote>
+<p>只有当 <code>db:seed</code> 运行起来很快的时候，才能完全利用数据填充工具带来的便利，而不是累赘。</p>
+<h2 id="批量入库">批量入库</h2>
+<p>所有假数据入库操作，都 <strong>必须</strong> 是批量操作，配合 <code>factory</code> 使用以下方法：</p>
+<pre><code>$users = factory(User::class)-&gt;times(1000)-&gt;make();
+User::insert($users-&gt;toArray());
+</code></pre>
+<p>以上只执行一条数据库语句，推荐阅读 <a href="https://learnku.com/laravel/t/2066/the-correct-method-for-filling-large-quantity-of-false-data">大批量假数据填充的正确方法</a>。</p>
+<p>#Artisan 命令行
+所有的自定义命令，都 <strong>必须</strong> 有项目的命名空间。</p>
+<p>如：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">php artisan phphub:clear-token
+php artisan phphub:send-status-email
+...
+</code></pre></div><p>错误的例子为：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">php artisan clear-token
+php artisan send-status-email
+...
+</code></pre></div><h1 id="日期和时间">日期和时间</h1>
+<p><strong>必须</strong> 使用 <a href="https://github.com/briannesbitt/Carbon">Carbon</a> 来处理日期和时间相关的操作。</p>
+<p>Laravel 5.1 中文的 <code>diffForHumans</code> 可以使用 <a href="https://github.com/jenssegers/date">jenssegers/date</a>。</p>
+<p>Laravel 5.3 及以上版本的 <code>diffForHumans</code>，只需要在 <code>config/app.php</code> 文件中配置 <code>locale</code> 选项即可 ：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&#39;locale&#39; =&gt; &#39;zh-CN&#39;,
+</code></pre></div><h1 id="中间件">中间件</h1>
+<h2 id="auth-中间件">Auth 中间件</h2>
+<p>Auth 中间件 <strong>必须</strong> 书写在控制器的 <code>__construct</code> 方法中，并且 <strong>必须</strong> 使用 <code>except</code> 黑名单进行过滤，这样当你新增控制器方法时，默认是安全的。</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">public function __construct()
+{
+	$this-&gt;middleware(&#39;auth&#39;, [
+		&#39;except&#39; =&gt; [&#39;show&#39;, &#39;index&#39;]
+	]);
+}
+</code></pre></div><h1 id="laravel-安全实践">Laravel 安全实践</h1>
+<h2 id="说明-2">说明</h2>
+<p>没有绝对安全，只有相对安全。Laravel 相较于其他框架在安全方面已经做得很优秀，不过作为开发者，我们要在日常开发中对『安全』需怀着敬畏之心，积极培养自己的安全意识。以下是一些 Laravel 安全相关的规范。</p>
+<h2 id="关闭-debug">关闭 DEBUG</h2>
+<p>Laravel Debug 开启时，会暴露很多能被黑客利用的服务器信息，所以，生产环境下请 <strong>必须</strong> 确保：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">APP_DEBUG=false
+</code></pre></div><h2 id="xss">XSS</h2>
+<p>跨站脚本攻击（cross-site scripting，简称 XSS），具体危害体现在黑客能控制你网站页面，包括使用 JS 盗取 Cookie 等，关于 XSS 的介绍请前往 <a href="https://www.ibm.com/developerworks/cn/rational/08/0325_segal/">IBM 文档库：跨站点脚本攻击深入解析</a> 。</p>
+<p>默认情况下，在无法保证用户提交内容是 100% 安全的情况下，<strong>必须</strong> 使用 Blade 模板引擎的 <code>{{ $content }}</code> 语法会对用户内容进行转义。</p>
+<p>Blade 的 <code>{!! $content !!}</code> 语法会直接对内容进行 <strong>非转义</strong> 输出，使用此语法时，<strong>必须</strong> 使用 <a href="https://github.com/mewebstudio/Purifier">HTMLPurifier for Laravel 5</a> 来为用户输入内容进行过滤。使用方法参见： <a href="https://learnku.com/articles/4798/the-use-of-htmlpurifier-to-solve-the-xss-xss-attacks-of-security-problems-in-laravel">使用 HTMLPurifier 来解决 Laravel 5 中的 XSS 跨站脚本攻击安全问题</a></p>
+<h2 id="sql-注入">SQL 注入</h2>
+<p>Laravel 的 <a href="http://learnku.com/docs/laravel/5.3/queries">查询构造器</a> 和 <a href="http://learnku.com/docs/laravel/5.3/eloquent">Eloquent</a> 是基于 PHP 的 PDO，PDO 使用 <code>prepared</code> 来准备查询语句，保障了安全性。</p>
+<p>在使用 <code>raw()</code> 来编写复杂查询语句时，<strong>必须</strong> 使用数据绑定。</p>
+<p>错误的做法：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">Route::get(&#39;sql-injection&#39;, function() {
+    $name = &#34;admin&#34;; // 假设用户提交
+    $password = &#34;xx&#39; OR 1=&#39;1&#34;; // // 假设用户提交
+    $result = DB::select(DB::raw(&#34;SELECT * FROM users WHERE name =&#39;$name&#39; and password = &#39;$password&#39;&#34;));
+    dd($result);
+});
+</code></pre></div><p>以下是正确的做法，利用 <a href="http://d.laravel-china.org/api/5.3/Illuminate/Database/ConnectionInterface.html#method_select">select 方法</a> 的第二个参数做数据绑定：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">Route::get(&#39;sql-injection&#39;, function() {
+    $name = &#34;admin&#34;; // 假设用户提交
+    $password = &#34;xx&#39; OR 1=&#39;1&#34;; // // 假设用户提交
+    $result = DB::select(
+		DB::raw(&#34;SELECT * FROM users WHERE name =:name and password = :password&#34;),
+		[
+			&#39;name&#39; =&gt; $name,
+			&#39;password&#39; =&gt; $password,
+		]
+	);
+    dd($result);
+});
+</code></pre></div><p><code>DB</code> 类里的大部分执行 SQL 的函数都可传参第二个参数 <code>$bindings</code> ，详见：<a href="http://d.laravel-china.org/api/5.3/Illuminate/Database/ConnectionInterface.html">API 文档</a> 。</p>
+<h2 id="批量赋值">批量赋值</h2>
+<p>Laravel 提供白名单和黑名单过滤（<code>$fillable</code> 和 <code>$guarded</code>），开发者 <strong>应该</strong> 清楚认识批量赋值安全威胁的情况下合理灵活地运用。</p>
+<p>批量赋值安全威胁，指的是用户可更新本来不应有权限更新的字段。举例，<code>users</code> 表里的 <code>is_admin</code> 字段是用来标识用户『是否是管理员』，某不怀好意的用户，更改了『修改个人资料』的表单，增加了一个字段：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;input name=&#34;is_admin&#34; value=&#34;1&#34; /&gt;
+</code></pre></div><p>这个时候如果你更新代码如下：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">Auth::user()-&gt;update(Request::all());
+</code></pre></div><p>此用户将获取到管理员权限。可以有很多种方法来避免这种情况出现，最简单的方法是通过设置 User 模型里的 <code>$guarded</code> 字段来避免：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">protected $guarded = [&#39;id&#39;, &#39;is_admin&#39;];
+</code></pre></div><h2 id="csrf">CSRF</h2>
+<p>CSRF 跨站请求伪造是 Web 应用中最常见的安全威胁之一，具体请见 <a href="https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0">Wiki - 跨站请求伪造</a> 或者 <a href="https://www.ibm.com/developerworks/cn/rational/r-cn-webcsrf/">Web 应用程序常见漏洞 CSRF 的入侵检测与防范</a>。</p>
+<p>Laravel 默认对所有『非幂等的请求』强制使用 <code>VerifyCsrfToken</code> 中间件防护，需要开发者做的，是区分清楚什么时候该使用『非幂等的请求』。</p>
+<blockquote>
+<p>幂等请求指的是：&lsquo;HEAD&rsquo;, &lsquo;GET&rsquo;, &lsquo;OPTIONS&rsquo;，既无论你执行多少次重复的操作都不会给资源造成变更。</p>
+</blockquote>
+<ul>
+<li>所有删除的动作，<strong>必须</strong> 使用 DELETE 作为请求方法；</li>
+<li>所有对数据更新的动作，<strong>必须</strong> 使用 POST、PUT 或者 PATCH 请求方法。</li>
+</ul>
+<h1 id="laravel-程序优化">Laravel 程序优化</h1>
+<h2 id="说明-3">说明</h2>
+<p>作为优秀的开发者，在日常编码中，应积极培养书写高执行效率代码的意识。不过项目运行效率是一个系统性工程，不应该只停留在代码层面上，有时更应该考虑整个项目架构，包括项目中使用的软件等。</p>
+<p>本文罗列了一些常见的优化项目，并且对其做了约束。</p>
+<h2 id="1-配置信息缓存">1. 配置信息缓存</h2>
+<p>生产环境中的 <strong>应该</strong> 使用『配置信息缓存』来加速 Laravel 配置信息的读取。</p>
+<p>使用以下 Artisan 自带命令，把 <code>config</code> 文件夹里所有配置信息合并到一个文件里，减少运行时文件的载入数量：</p>
+<pre><code>php artisan config:cache
+</code></pre>
+<p>缓存文件存放在 <code>bootstrap/cache/</code> 文件夹中。</p>
+<p>可以使用以下命令来取消配置信息缓存：</p>
+<pre><code>php artisan config:clear
+</code></pre>
+<p>注意：配置信息缓存不会随着更新而自动重载，所以，开发时候建议关闭配置信息缓存，一般在生产环境中使用。可以配合 <a href="https://learnku.com/docs/laravel/5.5/envoy">Envoy 任务运行器</a> 使用，在每次上线代码时执行 <code>config:clear</code> 命令。</p>
+<h2 id="2-路由缓存">2. 路由缓存</h2>
+<p>生产环境中的 <strong>应该</strong> 使用『路由缓存』来加速 Laravel 的路由注册。</p>
+<p>路由缓存可以有效的提高路由器的注册效率，在大型应用程序中效果越加明显，可以使用以下命令：</p>
+<pre><code>php artisan route:cache
+</code></pre>
+<p>缓存文件存放在 <code>bootstrap/cache/</code> 文件夹中。另外，路由缓存不支持路由匿名函数编写逻辑，详见：<a href="https://learnku.com/docs/laravel/5.5/controllers#route-caching">文档 - 路由缓存</a>。</p>
+<p>可以使用下面命令清除路由缓存：</p>
+<pre><code>php artisan route:clear
+</code></pre>
+<p>注意：路由缓存不会随着更新而自动重载，所以，开发时候建议关闭路由缓存，一般在生产环境中使用。可以配合 <a href="https://learnku.com/docs/laravel/5.5/envoy">Envoy 任务运行器</a> 使用，在每次上线代码时执行 <code>route:clear</code> 命令。</p>
+<h2 id="3-类映射加载优化">3. 类映射加载优化</h2>
+<p><code>optimize</code> 命令把常用加载的类合并到一个文件里，通过减少文件的加载，来提高运行效率。生产环境中的 <strong>应该</strong> 使用 optimize 命令来优化类的加载速度：</p>
+<pre><code>php artisan optimize --force
+</code></pre>
+<p>以上命令会在 <code>bootstrap/cache/</code> 文件夹中生成缓存文件。你可以通过修改 <code>config/compile.php</code> 文件来添加要合并的类。在 <code>production</code> 环境中，参数 <code>--force</code> 不需要指定，文件就会自动生成。</p>
+<p>要清除类映射加载优化，请运行以下命令：</p>
+<pre><code>php artisan clear-compiled
+</code></pre>
+<p>此命令会删除上面 <code>optimize</code> 生成的两个文件。</p>
+<p>注意：此命令要运行在 <code>php artisan config:cache</code> 后，因为 <code>optimize</code> 命令是根据配置信息（如：<code>config/app.php</code> 文件的 <code>providers</code> 数组）来生成文件的。</p>
+<h2 id="4-自动加载优化">4. 自动加载优化</h2>
+<p>此命令不止针对于 Laravel 程序，适用于所有使用 <code>composer</code> 来构建的程序。此命令会把 <code>PSR-0</code> 和 <code>PSR-4</code> 转换为一个类映射表，来提高类的加载速度。</p>
+<pre><code>composer dumpautoload -o
+</code></pre>
+<blockquote>
+<p>注意：<code>php artisan optimize --force</code> 命令里已经做了这个操作。</p>
+</blockquote>
+<h2 id="5-使用-memcached-来存储会话">5. 使用 Memcached 来存储会话</h2>
+<p>每一个 Laravel 的请求，都会产生会话，修改会话的存储方式能有效提高程序效率。会话的配置文件是 <code>config/session.php</code>。生产环境中的 <strong>必须</strong> 使用 Memcached 或者 Redis 等专业的缓存软件来存储会话，<strong>应该</strong> 优先选择 Redis：</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#2aa198">&#39;default&#39;</span> <span style="color:#719e07">=&gt;</span> <span style="color:#2aa198">&#39;redis&#39;</span>,
+</code></pre></div><h2 id="6-使用专业缓存驱动器">6. 使用专业缓存驱动器</h2>
+<p>「缓存」是提高应用程序运行效率的法宝之一，Laravel 默认缓存驱动是 <code>file</code> 文件缓存，生产环境中的 <strong>必须</strong> 使用专业的缓存系统，如 Redis 或者 Memcached。<strong>应该</strong> 优先考虑 Redis。<strong>应该</strong> 避免使用数据库缓存。</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#2aa198">&#39;default&#39;</span> <span style="color:#719e07">=&gt;</span> <span style="color:#2aa198">&#39;redis&#39;</span>,
+</code></pre></div><h2 id="7-数据库请求优化">7. 数据库请求优化</h2>
+<p>关联模型数据读取时 <strong>必须</strong> 使用 <a href="http://learnku.com/docs/laravel/5.5/eloquent-relationships#%E5%BB%B6%E8%BF%9F%E9%A2%84%E5%8A%A0%E8%BD%BD">延迟预加载</a> 和 <a href="http://learnku.com/docs/laravel/5.5/eloquent-relationships#%E9%A2%84%E5%8A%A0%E8%BD%BD">预加载</a> 。</p>
+<p>临近上线时 <strong>必须</strong> 使用 <a href="https://github.com/barryvdh/laravel-debugbar">Laravel Debugbar</a> 或者 <a href="https://learnku.com/laravel/t/23">Clockwork</a> 留意每一个页面的总 SQL 请求条数，进行数据库请求调优。</p>
+<h2 id="8-为数据集书写缓存逻辑">8. 为数据集书写缓存逻辑</h2>
+<p><strong>应该</strong> 合理的使用 Laravel 提供的缓存层操作，把从数据库里面拿出来的数据集合进行缓存，减少数据库的压力，运行在内存上的专业缓存软件对数据的读取也远远快于数据库。</p>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#268bd2">$hot_posts</span> <span style="color:#719e07">=</span> Cache<span style="color:#719e07">::</span>remember(<span style="color:#2aa198">&#39;posts.hot_posts&#39;</span>, <span style="color:#268bd2">$minutes</span> <span style="color:#719e07">=</span> <span style="color:#2aa198">30</span>, <span style="color:#719e07">function</span>()
+{
+    <span style="color:#719e07">return</span> Post<span style="color:#719e07">::</span>getHotPosts();
+});
+</code></pre></div><p><code>remember</code> 甚至连数据关联模型也都一并缓存了，多么方便呀。</p>
+<h2 id="9-使用即时编译器">9. 使用即时编译器</h2>
+<p><strong>可以</strong> 使用 OpCache 进行优化。OpCache 都能轻轻松松的让你的应用程序在不用做任何修改的情况下，直接提高 50% 或者更高的性能，PHPhub 之前做过一个实验，具体请见：<a href="https://learnku.com/laravel/t/301">使用 OpCache 提升 PHP 5.5+ 程序性能</a>。</p>
+
+		</div>
+
+		<div class="post-tags">
+			
+				
+			
+		</div>
+		</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> © Copyright notice |  <a href="https://github.com/vividvilla/ezhil">Ezhil theme</a> | Built with <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-123-45', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+<script>feather.replace()</script>
+</body>
+</html>
